@@ -4,6 +4,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "types": [
+      "jest",
+      "node"
+    ],
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
