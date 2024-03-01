@@ -1,0 +1,19 @@
+.todo-list {
+  min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    margin: 0;
+  }
+}
+.buttons {
+  display: flex;
+  gap: 10px;
+}

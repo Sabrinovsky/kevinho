@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CounterComponent } from './counter.component';
+import {
+  MatFormFieldModule, MatLabel,
+} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 describe('CounterComponent', () => {
   let component: CounterComponent;
@@ -8,7 +13,8 @@ describe('CounterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CounterComponent],
+      declarations: [CounterComponent,MatLabel],
+      imports: [FormsModule, MatFormFieldModule, MatInputModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CounterComponent);
@@ -17,7 +23,7 @@ describe('CounterComponent', () => {
   });
 
   it('increments the value when the button is clicked', () => {
-    expect(component.value).toBe(0)
+    expect(component.value).toBe(0);
     component.increment();
     expect(component.value).toBe(1);
   });
