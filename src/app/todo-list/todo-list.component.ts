@@ -1,16 +1,26 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Todo } from 'src/types/todo';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css',
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnInit {
   todoNameControl = new FormControl('');
-  todos: Todo[] = [
-    { id: '1', name: 'Todo1', done: false },
-    { id: '2', name: 'Todo2', done: true },
-  ];
+  todos: Todo[] = [];
+
+  constructor(public todoService: TodoService){}
+
+  ngOnInit() {
+    this.todoService.getAllTodos().subscribe(todos => this.todos = todos);
+  }
+
+  deleteTodo(deletedTodo: Todo){
+    this.todoService.deleteTodo(deletedTodo.id).subscribe(() => {
+      this.todos = this.todos.filter(todo => todo.id !== deletedTodo.id);
+    });
+  }
 }
