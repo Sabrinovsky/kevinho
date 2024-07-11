@@ -17,4 +17,8 @@ export class TodoService {
   deleteTodo(id: string) {
     return this.httpClient.delete(`http://localhost:3004/todos/${id}`);
   }
+
+  createTodo(todo: Todo) {
+    return this.httpClient.post<Todo>('http://localhost:3004/todos', todo);
+  }
 }

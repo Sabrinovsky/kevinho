@@ -13,6 +13,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { NoContentComponent } from './no-content/no-content.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     CounterComponent,
     InputComponent,
     TodoListComponent,
+    NoContentComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

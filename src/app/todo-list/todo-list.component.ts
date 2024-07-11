@@ -12,15 +12,34 @@ export class TodoListComponent implements OnInit {
   todoNameControl = new FormControl('');
   todos: Todo[] = [];
 
-  constructor(public todoService: TodoService){}
+  constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    this.todoService.getAllTodos().subscribe(todos => this.todos = todos);
+    console.log('TodoListComponent initialized');
+    this.todoService.getAllTodos().subscribe((todos) => {
+      this.todos = todos;
+    });
   }
 
-  deleteTodo(deletedTodo: Todo){
-    this.todoService.deleteTodo(deletedTodo.id).subscribe(() => {
-      this.todos = this.todos.filter(todo => todo.id !== deletedTodo.id);
+  deleteTodo(todo: Todo) {
+    this.todoService.deleteTodo(todo.id!).subscribe(() => {
+      this.todos = this.todos.filter((t) => t.id !== todo.id);
     });
+  }
+
+  toggleDone(updatedTodo: Todo) {
+    this.todos = this.todos.map((t) => (t.id === updatedTodo.id ? {...updatedTodo, done: true} : t));
+  }
+
+  addTodo() {
+    if (!this.todoNameControl.value) return;
+
+    this.todos = [...this.todos, { name: this.todoNameControl.value, done: false }];
+    // this.todoService
+    //   .createTodo({ name: this.todoNameControl.value, done: false })
+    //   .subscribe((todo) => {
+    //     this.todos = [...this.todos, todo];
+    //   });
+    this.todoNameControl.setValue('');
   }
 }
