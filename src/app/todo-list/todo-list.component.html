@@ -2,28 +2,37 @@
   <mat-card>
     <mat-card-content>
       <div class="content">
-        <app-input
-          [control]="todoNameControl"
-          [label]="'Todo name'"
-        ></app-input>
-        <div class="buttons">
-          <button mat-button color="primary">Add todo</button>
-        </div>
+        <form (submit)="onSubmit()">
+          <app-input
+            [control]="todoNameControl"
+            [label]="'Todo name'"
+          ></app-input>
+          <div class="buttons">
+            <button mat-button color="primary">Add todo</button>
+          </div>
+        </form>
       </div>
     </mat-card-content>
   </mat-card>
 
+  @if(todos$ | async; as todos) {
   <mat-card *ngFor="let todo of todos">
     <mat-card-content>
       <div class="content">
         <p>{{ todo.name }}</p>
         <div class="buttons">
           <button mat-button color="primary">Done</button>
-          <button mat-button (click)="deleteTodo(todo)" [title]="'Delete ' + todo.name" color="warn">
+          <button
+            mat-button
+            (click)="deleteTodo(todo)"
+            [title]="'Delete ' + todo.name"
+            color="warn"
+          >
             Delete
           </button>
         </div>
       </div>
     </mat-card-content>
   </mat-card>
+  }
 </div>
