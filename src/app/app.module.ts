@@ -12,32 +12,25 @@ import { MatInputModule } from '@angular/material/input';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { todosReducer } from './todo-list/todo.reducers';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    CounterComponent,
-    InputComponent,
-    TodoListComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    StoreModule.forRoot({ todos: todosReducer }),
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        CounterComponent,
+        InputComponent,
+        TodoListComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        StoreModule.forRoot({ todos: todosReducer })], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
