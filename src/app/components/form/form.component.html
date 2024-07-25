@@ -1,0 +1,12 @@
+<form [formGroup]="form()" >
+  <mat-form-field floatLabel="always">
+    <mat-select
+      ngDefaultControl
+      [formControlName]="'select'"
+    >
+      <mat-option *ngFor="let option of selectOptions()" [value]="option.value">{{
+        option.value
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

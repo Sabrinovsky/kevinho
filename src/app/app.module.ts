@@ -15,12 +15,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { todosReducer } from './todo-list/todo.reducers';
+import { FormComponent } from './components/form/form.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({ declarations: [
         AppComponent,
         CounterComponent,
         InputComponent,
-        TodoListComponent,
+        TodoListComponent
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
@@ -32,5 +34,6 @@ import { todosReducer } from './todo-list/todo.reducers';
         MatButtonModule,
         FormsModule,
         ReactiveFormsModule,
+        FormComponent,
         StoreModule.forRoot({ todos: todosReducer })], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
